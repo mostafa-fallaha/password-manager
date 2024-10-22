@@ -132,6 +132,7 @@ fn add_password(
         DisableMouseCapture
     )?;
     terminal.show_cursor()?;
+    terminal.clear()?;
 
     // Collect service, username, and password from user
     let service = prompt_user("Enter service: ")?;
@@ -271,6 +272,8 @@ fn delete_password(
         DisableMouseCapture
     )?;
     terminal.show_cursor()?;
+    terminal.clear()?;
+
     let service = prompt_user("Enter service to delete: ")?;
     passwords.retain(|entry| entry.service != service);
     println!("Password deleted successfully (if it existed).");
