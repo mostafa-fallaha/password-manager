@@ -11,3 +11,5 @@ rand = "0.8.5"
 termion = "1.5"
 tui = { version = "0.19", default-features = false, features = ['termion', 'crossterm'] }
 crossterm = "0.25"
+dirs = "5.0.1"
+once_cell = "1.12.0"

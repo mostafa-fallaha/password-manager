@@ -3,6 +3,8 @@ use crossterm::{
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
+use dirs::home_dir;
+use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
 use std::fs::{File, OpenOptions};
 use std::io::{self, BufReader, BufWriter, Write};
@@ -50,8 +52,21 @@ fn load_passwords(path: &str) -> std::io::Result<Vec<PasswordEntry>> {
     }
 }
 
+static PASSWORD_PATH: Lazy<String> = Lazy::new(|| {
+    let mut path = home_dir().expect("Could not retrieve home directory");
+    path.push(".password_manager");
+    path.push("passwords.json");
+    path.to_str()
+        .expect("Path to string conversion failed")
+        .to_string()
+});
+
+fn get_password_path() -> &'static str {
+    &PASSWORD_PATH
+}
+
 fn main() -> Result<(), io::Error> {
-    let pass_path = "/home/mostafa/.password_manager/passwords.json";
+    let pass_path = get_password_path();
 
     enable_raw_mode()?;
     let mut stdout = std::io::stdout();
