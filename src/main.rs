@@ -232,10 +232,10 @@ fn display_passwords(
                     .borders(Borders::ALL),
             )
             .widths(&[
-                Constraint::Percentage(15),
-                Constraint::Percentage(27),
-                Constraint::Percentage(16),
-                Constraint::Percentage(42),
+                Constraint::Percentage(18),
+                Constraint::Percentage(25),
+                Constraint::Percentage(17),
+                Constraint::Percentage(40),
             ]);
 
         let layout = Layout::default()
